@@ -16,16 +16,19 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OU
 */
 #pragma once
 
-#include <osgViewer/GraphicsWindow>
-#include <osgViewer/CompositeViewer>
-#include <osgViewer/ViewerBase>
+typedef void (APIENTRY *GLDEBUGPROC)(GLenum source,GLenum type,GLuint id,GLenum severity,GLsizei length,const GLchar *message,const GLvoid *userParam);
 
+
+#include <QOpenGLWidget>
+#include <QOpenGLFunctions>
 #include <QMutex>
 #include <QEvent>
 #include <QQueue>
 #include <QSet>
-#include <QOpenGLWidget>
-#include <QOpenGLFunctions>
+
+#include <osgViewer/GraphicsWindow>
+#include <osgViewer/CompositeViewer>
+#include <osgViewer/ViewerBase>
 
 class QInputEvent;
 class QGestureEvent;

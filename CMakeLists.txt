@@ -2,6 +2,7 @@ CMAKE_MINIMUM_REQUIRED (VERSION 3.7.2)
 
 # Set a default build type if none was specified https://blog.kitware.com/cmake-and-the-default-build-type/
 set(default_build_type "Release")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
  
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   message(STATUS "Setting build type to '${default_build_type}' as none was specified.")
