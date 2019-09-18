@@ -7,4 +7,5 @@ cmake .. \
   -DOSGUTIL_LIBRARY_DEBUG=/usr/local/opt/openscenegraph/lib/libosgUtil.dylib \
   -DOSGVIEWER_LIBRARY_DEBUG=/usr/local/opt/openscenegraph/lib/libosgViewer.dylib \
   -DOSG_LIBRARY_DEBUG=/usr/local/opt/openscenegraph/lib/libosg.dylib \
-  -G Ninja
+  -DBUILD_VIEWER_APPLICATION=OFF \
+  -G Ninja "$1"

@@ -18,6 +18,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OU
 #include <osg/Version>
 #include <osgViewer/ViewerBase>
 #include <QInputEvent>
+typedef void (APIENTRY *GLDEBUGPROC)(GLenum source,GLenum type,GLuint id,GLenum severity,GLsizei length,const GLchar *message,const GLvoid *userParam);
 #include <QOpenGLContext>
 
 #if (QT_VERSION >= QT_VERSION_CHECK(4, 6, 0))
