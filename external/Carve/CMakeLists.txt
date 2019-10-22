@@ -13,9 +13,9 @@ IF(NOT CMAKE_BUILD_TYPE)
 ENDIF()
 ENDIF(NOT WIN32)
 
-FIND_PACKAGE(Boost) 
+FIND_PACKAGE(Boost)
 IF(Boost_FOUND)
-    INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS}) 
+    INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
 	ADD_DEFINITIONS( -DCARVE_SYSTEM_BOOST )
 ENDIF()
 
@@ -29,7 +29,7 @@ CONFIGURE_FILE (
   "${CARVE_BINARY_DIR}/include/carve/config.h"
 )
 
-SET(CARVE_SOURCE_FILES 
+SET(CARVE_SOURCE_FILES
   src/lib/aabb.cpp
   src/lib/carve.cpp
   src/lib/convex_hull.cpp
@@ -58,14 +58,9 @@ SET(CARVE_SOURCE_FILES
   src/lib/tag.cpp
   src/lib/timing.cpp
   src/lib/triangulator.cpp
-  src/common/geometry.cpp  
+  src/common/geometry.cpp
 )
-IF(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-	ADD_DEFINITIONS(-DCMAKE_BUILD)
-    ADD_LIBRARY(carve SHARED ${CARVE_SOURCE_FILES})
-ELSE(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-    ADD_LIBRARY(carve STATIC ${CARVE_SOURCE_FILES})
-ENDIF()
+ADD_LIBRARY(carve STATIC ${CARVE_SOURCE_FILES})
 
 # Use this to request C++11 features. Dependent targets will transitively get
 # this requirement as well.
