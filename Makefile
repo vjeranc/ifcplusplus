@@ -1,11 +1,16 @@
 all: build build_debug
 
+
 build:
 	mkdir build
 	cd build && cmake .. -DBUILD_VIEWER_APPLICATION=OFF -G Ninja
 	cd build && ninja -j4
+	mkdir -p build/Debug
 
-build_debug: build
+build/Debug:
+	mkdir -p build/Debug
+
+build_debug: build build/Debug
 	mkdir build_debug
 	cd build_debug && cmake .. -DBUILD_VIEWER_APPLICATION=OFF \
 													 	 -G Ninja \
