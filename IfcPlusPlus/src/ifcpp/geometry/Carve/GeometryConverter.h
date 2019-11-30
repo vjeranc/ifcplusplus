@@ -474,7 +474,7 @@ public:
 
 	//\brief method convertIfcProduct: Creates geometry objects (meshset with connected vertex-edge-face graph) from an IfcProduct object
 	// caution: when using OpenMP, this method runs in parallel threads, so every write access to member variables needs a write lock
-	void convertIfcProductShape( shared_ptr<ProductShapeData>& product_shape )
+	virtual void convertIfcProductShape( shared_ptr<ProductShapeData>& product_shape )
 	{
 		if( product_shape->m_ifc_object_definition.expired() )
 		{
@@ -596,7 +596,7 @@ public:
 		}
 	}
 
-	void subtractOpeningsInRelatedObjects(shared_ptr<ProductShapeData>& product_shape)
+	virtual void subtractOpeningsInRelatedObjects(shared_ptr<ProductShapeData>& product_shape)
 	{
 		if( product_shape->m_ifc_object_definition.expired() )
 		{
