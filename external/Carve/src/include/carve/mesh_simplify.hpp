@@ -896,8 +896,8 @@ class MeshSimplifier {
       edge_t* removed = edge->mergeFaces();
       if (removed == nullptr) {
         coplanar_face_edges.erase(edge);
-        ++n_merge;
       } else {
+        ++n_merge;
         edge_t* e = removed;
         do {
           edge_t* n = e->next;
@@ -1082,15 +1082,17 @@ class MeshSimplifier {
       face_t* face = mesh->faces[i];
       edge_t* start = face->edge;
       edge_t* edge = start;
+      size_t edgesBeforeRemoval = face->n_edges;
       do {
         if (edge->next == edge->rev || edge->prev == edge->rev) {
           edge = edge->removeEdge();
-          ++n_removed;
+          if (face->n_edges == 0) { break; }
           start = edge->prev;
         } else {
           edge = edge->next;
         }
       } while (edge != start);
+      n_removed += edgesBeforeRemoval - face->n_edges;
     }
     return n_removed;
   }
@@ -1183,6 +1185,7 @@ class MeshSimplifier {
       n_removed += mergeCoplanarFaces(meshset->meshes[i], min_normal_angle);
       removeRemnantFaces(meshset->meshes[i]);
       cleanFaceEdges(meshset->meshes[i]);
+      removeRemnantFaces(meshset->meshes[i]);
       meshset->meshes[i]->cacheEdges();
     }
     return n_removed;
